@@ -1,35 +1,86 @@
-# 领域导航
+# 生物学技术与分析方法知识导航
 
-从数据的生成方式、测量单位、处理假设和结果边界出发，而不是只按软件名称学习。先读 [学习方式](../docs/learning-guide.md) 和 [学习路线](../docs/learning-path.md)，再进入具体领域。
+这个知识库关心的是：生物学变量怎样成为可观察的数据，分析怎样从数据提取信息，不同技术为何能够互相补充，以及结果能支持什么解释。
 
-初始版本按方法家族整理了25个领域、194个方法条目。这是个人学习起点，不是对所有顶刊方法的穷尽统计。方法编号保持稳定，便于在术语、论文和学习笔记之间互相引用。
+## 概念与技术关系
 
-| 领域 | 方法数 | 条目编号 |
+| 想理解的问题 | 知识正文 |
+| --- | --- |
+| 实验测量、数据处理和生物学解释之间是什么关系？ | [测量、数据、模型与生物学解释](../docs/learning-guide.md) |
+| 同一问题为什么需要多种技术，它们怎样连接？ | [技术之间的逻辑与分析意义](../docs/technique-relations.md) |
+| 序列、染色质、转录和RNA加工怎样影响表达？ | [基因组、染色质、RNA与调控](../docs/molecular-regulation.md) |
+| 细胞身份、状态、组成、位置、命运和谱系有什么区别？ | [细胞、空间、时间与扰动](../docs/cells-space-time.md) |
+| 蛋白量、结构、结合、活性、代谢物浓度和通量有什么联系？ | [蛋白、结构、相互作用与代谢](../docs/structure-function.md) |
+| 个体、物种、生态群落和神经系统需要什么观测与模型？ | [群体、进化、生态、神经与系统建模](../docs/populations-systems.md) |
+
+这些不是按先后顺序排定的课程。可以从实际问题进入正文，再通过链接查具体技术；也可以直接使用下面的领域索引。
+
+## 技术与方法条目
+
+以下保留25个领域、194个方法家族条目，作为覆盖面较广的查阅层。条目包含基本原理、目的、输入、处理、结果和解释边界；不表示194个软件，也不是对所有顶刊论文的穷尽统计。已有M编号保留，避免术语和交叉引用失效。
+
+### 共用的数据与推断基础
+
+| 领域 | 主要回答的问题 | 条目 |
 | --- | --- | --- |
-| [01 统计与研究设计](domains/01-statistics.md) | 10 | M001–M010 |
-| [02 数据工程与共用分析](domains/02-data-foundations.md) | 8 | M011–M018 |
-| [03 基因组与变异](domains/03-genomics.md) | 8 | M019–M026 |
-| [04 群体遗传与因果优先级](domains/04-population-genetics.md) | 8 | M027–M034 |
-| [05 转录组与RNA机制](domains/05-transcriptomics.md) | 11 | M035–M045 |
-| [06 表观组与三维基因组](domains/06-epigenomics.md) | 8 | M046–M053 |
-| [07 单细胞与细胞图谱](domains/07-single-cell.md) | 9 | M054–M062 |
-| [08 细胞动态与谱系](domains/08-dynamics-lineage.md) | 6 | M063–M068 |
-| [09 空间组学与组织生态位](domains/09-spatial-omics.md) | 8 | M069–M076 |
-| [10 多组学、网络与系统整合](domains/10-multi-omics-networks.md) | 6 | M077–M082 |
-| [11 扰动筛选与功能基因组](domains/11-perturbation.md) | 7 | M083–M089 |
-| [12 免疫组库与肿瘤演化](domains/12-immunity-cancer.md) | 6 | M090–M095 |
-| [13 蛋白质组与蛋白状态](domains/13-proteomics.md) | 9 | M096–M104 |
-| [14 代谢组、脂质组与通量](domains/14-metabolomics.md) | 7 | M105–M111 |
-| [15 结构生物学与实验重建](domains/15-structural-biology.md) | 8 | M112–M119 |
-| [16 计算化学、设计与药物分子](domains/16-computational-chemistry.md) | 7 | M120–M126 |
-| [17 显微图像与细胞表型](domains/17-imaging-cytometry.md) | 8 | M127–M134 |
-| [18 神经活动、连接组与行为](domains/18-neuroscience-behavior.md) | 8 | M135–M142 |
-| [19 微生物组与环境组学](domains/19-microbiome.md) | 8 | M143–M150 |
-| [20 进化、比较与古基因组](domains/20-evolution.md) | 8 | M151–M158 |
-| [21 生态、植物与农业](domains/21-ecology-plants.md) | 8 | M159–M166 |
-| [22 生物物理与数学建模](domains/22-biophysics-modeling.md) | 8 | M167–M174 |
-| [23 生物AI与基础模型](domains/23-biological-ai.md) | 8 | M175–M182 |
-| [24 转化研究与药理数据](domains/24-translational-pharmacology.md) | 6 | M183–M188 |
-| [25 定量发育与合成生物学](domains/25-development-synthetic-biology.md) | 6 | M189–M194 |
+| [01 统计与研究设计](domains/01-statistics.md) | 什么是比较对象、独立重复、效应与不确定性？ | M001–M010（10） |
+| [02 数据工程与共用分析](domains/02-data-foundations.md) | 数据怎样组织、变换、降维、分组和概括？ | M011–M018（8） |
 
-[实验读出](../experiments/index.md) · [术语词典](../glossary/index.md) · [数据格式](../data-formats/index.md) · [参考资料](../references/index.md)
+### 序列、遗传变异与分子调控
+
+| 领域 | 主要回答的问题 | 条目 |
+| --- | --- | --- |
+| [03 基因组与变异](domains/03-genomics.md) | 序列是什么，哪些位置和结构发生变化？ | M019–M026（8） |
+| [04 群体遗传与因果优先级](domains/04-population-genetics.md) | 变异与性状怎样关联，如何缩小候选机制？ | M027–M034（8） |
+| [05 转录组与RNA机制](domains/05-transcriptomics.md) | RNA的量、结构、加工、合成和降解如何改变？ | M035–M045（11） |
+| [06 表观组与三维基因组](domains/06-epigenomics.md) | DNA如何开放、修饰、被蛋白占据和空间组织？ | M046–M053（8） |
+
+### 细胞、组织、动态与功能检验
+
+| 领域 | 主要回答的问题 | 条目 |
+| --- | --- | --- |
+| [07 单细胞与细胞图谱](domains/07-single-cell.md) | 有哪些细胞，它们的状态和组成怎样不同？ | M054–M062（9） |
+| [08 细胞动态与谱系](domains/08-dynamics-lineage.md) | 状态顺序、方向、时间与共同祖先如何区分？ | M063–M068（6） |
+| [09 空间组学与组织生态位](domains/09-spatial-omics.md) | 分子和细胞在哪里，局部环境怎样组织？ | M069–M076（8） |
+| [10 多组学、网络与系统整合](domains/10-multi-omics-networks.md) | 不同读出怎样形成共享状态与候选机制？ | M077–M082（6） |
+| [11 扰动筛选与功能基因组](domains/11-perturbation.md) | 改变基因、元件或分子后，哪个读出受到影响？ | M083–M089（7） |
+| [12 免疫组库与肿瘤演化](domains/12-immunity-cancer.md) | 受体、克隆、遗传演化与细胞状态怎样对应？ | M090–M095（6） |
+| [25 定量发育与合成生物学](domains/25-development-synthetic-biology.md) | 规则、反馈、谱系和力学怎样产生组织或系统行为？ | M189–M194（6） |
+
+### 分子组成、物理结构与化学过程
+
+| 领域 | 主要回答的问题 | 条目 |
+| --- | --- | --- |
+| [13 蛋白质组与蛋白状态](domains/13-proteomics.md) | 蛋白有多少、怎样修饰、位于何处和与谁共同出现？ | M096–M104（9） |
+| [14 代谢组、脂质组与通量](domains/14-metabolomics.md) | 有哪些化合物，池大小与反应流量怎样区分？ | M105–M111（7） |
+| [15 结构生物学与实验重建](domains/15-structural-biology.md) | 分子三维结构怎样从实验或模型中获得？ | M112–M119（8） |
+| [16 计算化学、设计与药物分子](domains/16-computational-chemistry.md) | 分子怎样作用、运动，以及怎样提出新的候选？ | M120–M126（7） |
+
+### 图像、神经活动与行为
+
+| 领域 | 主要回答的问题 | 条目 |
+| --- | --- | --- |
+| [17 显微图像与细胞表型](domains/17-imaging-cytometry.md) | 图像和逐细胞信号怎样成为对象、形态和定量？ | M127–M134（8） |
+| [18 神经活动、连接组与行为](domains/18-neuroscience-behavior.md) | 结构、活动、刺激和行为如何对应？ | M135–M142（8） |
+
+### 群落、历史与环境
+
+| 领域 | 主要回答的问题 | 条目 |
+| --- | --- | --- |
+| [19 微生物组与环境组学](domains/19-microbiome.md) | 群落由谁组成，编码什么，哪些过程正在表达？ | M143–M150（8） |
+| [20 进化、比较与古基因组](domains/20-evolution.md) | 序列如何包含共同祖先、选择与群体历史的信息？ | M151–M158（8） |
+| [21 生态、植物与农业](domains/21-ecology-plants.md) | 生物分布、环境、检测过程与性状如何关联？ | M159–M166（8） |
+
+### 跨尺度模型与转化问题
+
+| 领域 | 主要回答的问题 | 条目 |
+| --- | --- | --- |
+| [22 生物物理与数学建模](domains/22-biophysics-modeling.md) | 规则如何产生动态，哪些参数和机制可由数据区分？ | M167–M174（8） |
+| [23 生物AI与基础模型](domains/23-biological-ai.md) | 模型学习了什么映射，输出如何验证和解释？ | M175–M182（8） |
+| [24 转化研究与药理数据](domains/24-translational-pharmacology.md) | 暴露、响应、结局和预测如何区分？ | M183–M188（6） |
+
+## 查术语、读出与来源
+
+[实验读出](../experiments/index.md)解释仪器和实验如何产生信号；[数据对象与格式](../data-formats/index.md)解释维度、字段和单位；[术语词典](../glossary/index.md)区分相同缩写在不同领域中的含义。
+
+[基础来源与百科入口](../references/index.md)用于追溯概念与实现；[近年Nature系列论文](../references/nature-papers.md)通过具体研究说明技术之间怎样连接。百科承担概念导航，技术原理和结论以直接相关的原始研究或官方文档为依据。

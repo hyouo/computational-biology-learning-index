@@ -7,34 +7,23 @@
 ```text
 computational-biology-learning-index/
 ├── README.md
+├── docs/                       # 知识正文：概念、测量原理与技术之间的关系
+│   ├── learning-guide.md       # 测量、数据、模型与生物学解释
+│   ├── technique-relations.md  # 技术之间的逻辑与分析意义
+│   ├── molecular-regulation.md # 基因组、染色质、RNA与调控
+│   ├── cells-space-time.md     # 细胞状态、空间、动态与扰动
+│   ├── structure-function.md   # 蛋白、结构、相互作用与代谢
+│   └── populations-systems.md  # 进化、生态、神经与系统建模
 ├── atlas/
-│   ├── index.md                  # 领域导航
-│   └── domains/                  # 分领域方法卡片：原理、目的、输入、处理与结果
+│   ├── index.md                # 按生物学问题组织的知识导航
+│   └── domains/                # 25个领域的技术与方法条目
 ├── experiments/
-│   └── index.md                  # 实验读出、对照、质量控制与局限
-├── glossary/
-│   └── index.md                  # 按领域和语境整理的术语
+│   └── index.md                # 实验怎样产生读出，以及读出的含义
 ├── data-formats/
-│   └── index.md                  # 文件格式与数据对象
-├── references/
-│   ├── index.md                  # 原始论文与官方文档
-│   └── provenance.json           # 初始资料来源与迁移记录
-├── docs/
-│   ├── learning-guide.md         # 如何从数据理解方法与证据
-│   ├── learning-path.md          # 分层学习路线
-│   └── maintenance.md            # 内容维护与本地校验
-├── learning-notes/
-│   ├── methods/                  # 方法学习笔记
-│   ├── papers/                   # 论文精读记录
-│   └── cases/                    # 从原始数据到生物学解释的案例
-├── templates/
-│   ├── method.md                 # 方法笔记模板
-│   ├── experiment.md             # 实验理解模板
-│   ├── paper.md                  # 论文精读模板
-│   └── case-study.md             # 数据分析案例模板
-├── scripts/
-│   └── validate.py               # 方法编号、目录和内部链接校验
-├── .editorconfig
-├── .gitattributes
-└── .gitignore
+│   └── index.md                # 数据对象、文件格式、维度与单位
+├── glossary/
+│   └── index.md                # 术语及其生物学语境
+└── references/
+    ├── index.md                # 基础来源、百科入口与官方文档
+    └── nature-papers.md        # 近年Nature系列论文中的技术关系与证据
 ```

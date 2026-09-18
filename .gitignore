@@ -1,37 +1,9 @@
-# Local environments and caches
-.venv/
-venv/
-__pycache__/
-*.py[cod]
-.ipynb_checkpoints/
-.pytest_cache/
-.Rhistory
-.RData
-.Rproj.user/
 .DS_Store
 Thumbs.db
-
-# Secrets and local configuration
+__pycache__/
+*.py[cod]
 .env
 .env.*
 !.env.example
-*.pem
-*.key
-
-# Large or restricted raw data: track accession and metadata instead
-data/raw/
-data/private/
-*.fastq
-*.fastq.gz
-*.fq
-*.fq.gz
-*.bam
-*.bai
-*.cram
-*.crai
-
-# Temporary analysis outputs
-work/
-outputs/
-tmp/
-*.log
+.venv/
+.ipynb_checkpoints/
