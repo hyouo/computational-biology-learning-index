@@ -1,93 +1,93 @@
 # 技术之间的逻辑与分析意义
 
-[知识导航](../atlas/index.md) · [测量与推断](learning-guide.md)
+[知识导航](../atlas/index.md) · [生物学基础](biology-basics.md) · [实验读出](instruments-and-data.md) · [计算任务](computation-basics.md)
 
-技术之间的关系不是“一个软件接着另一个软件”。下面把方法组织成问题之间的联系。箭头仅在明确写成数据传递时表示输出进入下一步；其他关系可能是平行测量、候选解释或独立检验，不是固定的实验套餐。
+技术不是互不相干的缩写列表。它们有时回答同一问题的不同部分，有时将上一步的输出继续加工，有时帮助排除另一种解释。下面的关系是理解方法的地图，不是所有研究都必须照做的流水线。
 
-## 五种需要区分的关系
+## 1. 先认识五种关系
 
-| 关系 | 例子 | 增加了什么信息 |
+| 关系 | 怎么理解 | 例子 |
 | --- | --- | --- |
-| 数据传递 | RNA reads → 比对/定量 → 计数模型 | 将信号转换为可比较的特征和效应 |
-| 平行互补 | RNA-seq与蛋白质组 | 从不同分子层观测同一系统，不保证变化一致 |
-| 测量范围或分辨率不同 | bulk、单细胞、空间表达 | 分别强调群体平均、细胞差异和组织位置；不是无条件升级 |
-| 假设与检验 | 调控网络候选与基因/元件扰动 | 区分相关结构和干预后的响应 |
-| 同任务的不同实现 | 同一类数据的不同定量或重建算法 | 比较模型假设、误差与适用条件，而非只比较软件新旧 |
+| 上下游的数据传递 | 后一步直接使用前一步结果 | 测序read → 比对/定量 → 计数比较 |
+| 同时观察不同变量 | 同一系统的不同侧面，不要求数值一致 | RNA数量与蛋白数量 |
+| 相同主题的不同尺度 | 强调平均、个体差异、位置或时间 | 组织总体、单细胞、空间和时间测量 |
+| 提出解释与检验解释 | 一步提出候选，另一步提供新约束 | 预测调控关系与干预后读出 |
+| 同任务的不同实现 | 算法、假设和误差不同 | 两种转录本定量或图像分割方法 |
 
-RNA定量、长读长异构体重建和空间细胞映射分别展示了上述不同关系：[DESeq2](../references/index.md#deseq)、[IsoQuant](../references/nature-papers.md#n02)、[空间脑图谱](../references/nature-papers.md#n04)。
+因此，不能把所有箭头都读成“必须先运行左边，再运行右边”。单细胞不是所有问题上都优于总体测量，结构预测也不是实验结构必须经过的上一步。[RNA定量](../references/index.md#deseq)、[空间映射](../references/index.md#cell2loc)、[实验结构](../references/index.md#cryo)
 
-## 1. 基因组差异为什么可能影响表型？
+## 2. 序列不同，怎样走到功能不同？
 
-序列分析首先发现或重建遗传差异；GWAS比较遗传变异与性状的统计关系；精细定位在连锁的候选变异中分配支持；分子QTL和共定位帮助连接分子层；元件或基因扰动检验特定条件下的效应。它们不是五种等价的“找关键基因”方法。[PLINK](../references/index.md#plink)、[SuSiE](../references/index.md#susie)、[coloc](../references/index.md#coloc)
+先看几种技术分别提供的判断：
 
-**缺失的环节是什么？**关联位点不等于已确认的效应变异，效应变异不等于已确认的靶基因，靶基因也不等于机制已经完成。泛基因组改进变异表示；AlphaGenome预测功能读出；二者都不会自动补齐整条因果链。[N01](../references/nature-papers.md#n01)、[N14](../references/nature-papers.md#n14)
+| 环节 | 得到的信息 | 为什么还需要其他环节？ |
+| --- | --- | --- |
+| DNA测序、组装、变异检测 | 序列与比较基准有什么差异 | 序列差异未必改变功能 |
+| GWAS，即全基因组关联研究 | 哪些变异与性状共同变化 | 附近变异常一起遗传，关联信号可能成组出现 |
+| 精细定位 | 在相关变异中分配候选支持 | 仍是模型下的优先级，不是逐个实验确认 |
+| 分子QTL与共定位 | 遗传关联是否连接到表达、剪接等分子量 | 共享信号不自动确定中介方向 |
+| 变体/元件/基因干预 | 改变候选后，读出如何响应 | 实验背景和实际干预效果影响结论 |
 
-详见[分子调控](molecular-regulation.md)与[群体遗传](../atlas/domains/04-population-genetics.md)。
+**QTL**指数量性状相关的遗传位点；例如eQTL关联表达，sQTL关联剪接。**连锁不平衡（LD）**指等位版本在群体中非随机地共同出现，它解释了为何“最显著位置”不一定就是直接起作用的位置。[PLINK](../references/index.md#plink)、[SuSiE](../references/index.md#susie)、[coloc](../references/index.md#coloc)
 
-## 2. DNA相同，细胞为何表现不同？
+泛基因组改进参考能够表示哪些序列；序列到功能模型预测某些变化可能如何影响读出。它们分别位于表示与预测环节，不自动完成全部功能解释。[Nature N01](../references/nature-papers.md#n01)、[N14](../references/nature-papers.md#n14)
 
-染色质开放程度、调控蛋白占据、RNA合成与加工、蛋白丰度与修饰，从不同层面限制细胞的状态。ATAC关注可及性，ChIP/CUT&RUN/CUT&Tag关注指定靶标相关富集，RNA分析关注转录本，蛋白组关注肽和蛋白信号。它们相互补充，而不是从ATAC出发就能自动计算出其他所有层。[CUT&Tag](../references/index.md#cuttag)、[DESeq2](../references/index.md#deseq)、[DIA-NN](../references/index.md#diann)
+## 3. DNA相近，细胞为什么表现不同？
 
-SCENIC+是这些信息如何形成调控网络假设的具体例子。其意义在于缩小候选空间，不在于把每条预测边都变成已验证的生物学事实。[N03](../references/nature-papers.md#n03)
+同一段DNA可以在不同细胞条件下被不同地使用。染色质、转录因子、RNA加工、蛋白修饰和环境都参与这种变化。技术的分析意义在于拆开这些变量：ATAC观察DNA可接近性，抗体靶向染色质实验观察特定目标的相关富集，RNA-seq观察RNA，蛋白质组观察蛋白相关信号。[分子调控](molecular-regulation.md)、[CUT&Tag](../references/index.md#cuttag)
 
-详见[分子调控](molecular-regulation.md)。
+这里的**motif**是偏好序列的模式模型；**调控网络**则尝试把调控者、DNA区域和靶基因连接起来。SCENIC+整合这些信息提出候选关系，帮助理解哪一组调控机制可能参与细胞状态，而不是把每条预测边变成已验证事实。[Nature N03](../references/nature-papers.md#n03)
 
-## 3. RNA增加，究竟增加了什么？
+## 4. RNA变化，是总量变化还是过程变化？
 
-基因总量、异构体比例、转录起始、RNA半衰期和核糖体占据是不同变量。常规RNA-seq、长读长RNA、端点测序、新生RNA/代谢标记及Ribo-seq分别补充不同信息。一个基因总量不变，仍可能发生剪接改变；同样的RNA丰度也可能由不同的合成—降解组合产生。[IsoQuant](../references/nature-papers.md#n02)、[Ribo-seq](../references/index.md#ribo)、[CellRank 2](../references/nature-papers.md#n08)
+同样的“RNA改变”可能指模板更多、外显子组合不同、开始或结束的位置不同、合成更快、降解更慢，或核糖体在某区域占据更多。分别需要总量定量、异构体/剪接分析、端点测量、时间与标记、核糖体足迹等信息。[RNA方法](../atlas/domains/05-transcriptomics.md)
 
-**分析意义：**从“有差异”转向“差异属于哪个生物过程”，而不是给同一份表达矩阵再换几种降维算法。
+一个教学例子：总量都为100份，样本甲中长异构体80份、短异构体20份，样本乙各50份。基因总量没有变，使用结构却变了。总量差异分析与异构体使用分析在这里不是重复工作。[IsoQuant](../references/nature-papers.md#n02)、[rMATS](../references/index.md#rmats)
 
-详见[转录组方法](../atlas/domains/05-transcriptomics.md)。
+RNA数量还取决于产生与消失两侧。只测一个时刻通常不能把二者分开；代谢标记和时间信息提供额外约束。[SLAM-seq](../references/index.md#slam)
 
-## 4. 组织改变，是细胞变了，还是细胞组成变了？
+## 5. 组织变了：细胞自身改变，还是组成改变？
 
-单细胞身份注释、类型内差异状态、细胞组成比较和空间邻域分析回答不同问题。组织平均信号把这些信息混合在一起；拆解它们需要合适的样本层级和独立重复，不能只看UMAP上是否分开。[muscat](../references/index.md#muscat)、[空间脑图谱](../references/nature-papers.md#n04)
+**总体测量（bulk）**把很多细胞的信号放在一起，适合总体比较；**单细胞**拆开捕获单位，揭示不同细胞；**空间测量**保留位置，说明谁和谁邻近。它们增加的是不同维度。
 
-空间技术增加位置，但分割、捕获单位及参考映射影响结果。细胞间通信分析再引入配体—受体等先验；空间相邻仅缩小可能关系，不单独证明通信发生。[Cell2location](../references/index.md#cell2loc)、[LIANA+](../references/nature-papers.md#n09)
+分析要区分身份、状态和组成：有哪些细胞，同类细胞内部是否改变，各类细胞占比是否改变。一张组织平均表达表可能混合三种效应。个体层级汇总和适当模型帮助把组内异质性与个体间比较分开。[muscat](https://pmc.ncbi.nlm.nih.gov/articles/PMC7705760/)
 
-详见[细胞、空间与时间](cells-space-time.md)。
+空间位置进一步帮助理解局部环境；配体—受体分析引入分子关系知识，提出候选通信。邻近、信号分子存在、下游响应和干预效应仍是不同层次。[细胞与空间](cells-space-time.md)、[LIANA+](../references/nature-papers.md#n09)
 
-## 5. 状态顺序、变化方向和共同祖先是什么关系？
+## 6. 图上的箭头，表示时间、方向还是祖先？
 
-拟时序描述状态在推断路径上的相对位置；RNA velocity和其他方向信息用于估计状态转移；谱系标记记录共同来源；活细胞追踪在时间上匹配同一对象。这些技术增加的是不同的约束，不应把四种图上的“箭头”读成同一件事。[RNA velocity](../references/index.md#velocity)、[CellRank 2](../references/nature-papers.md#n08)、[动态与谱系](../atlas/domains/08-dynamics-lineage.md)
+**拟时序**把状态排成推断顺序；**RNA velocity**在RNA加工动力学等假设下估计局部方向；**命运概率**描述模型中到达终末状态的可能性；**谱系记录**提供共同来源；**活细胞追踪**在真实时间中匹配同一对象。
 
-**分析意义：**区分细胞现在相似、未来可能趋向相同状态、过去来自同一祖先，以及真实经历了某个变化。
+这些信息可以互补：状态相似的细胞可能来自不同祖先，同一祖先的后代也可能变得不同。理解发育和肿瘤演化时，必须把“现在像谁”“可能变成谁”和“从谁而来”分开。[RNA velocity](../references/index.md#velocity)、[CellRank 2](../references/nature-papers.md#n08)、[谱系方法](../atlas/domains/08-dynamics-lineage.md)
 
-## 6. 一个蛋白为何具有某种功能？
+## 7. 蛋白的功能怎样由多种读出共同解释？
 
-蛋白质组回答量与部分状态，结构方法回答几何，结合测定约束相互作用，动力学描述反应或转换速率，扰动检验系统中的后果。结构预测、分子对接和MD是不同模型，不是互相自动验证的三步流水线。[AlphaFold 3](../references/nature-papers.md#n07)、[GROMACS](../references/index.md#md)、[AutoDock Vina](../references/index.md#vina)
+假设一个蛋白变体功能下降，可以分别问：蛋白是否变少？能否到达应在的位置？能否折叠？是否仍结合目标？化学反应是否仍发生？蛋白定量、成像、结构、结合和动力学分别检查不同可能性。
 
-设计则反过来从约束提出候选，再回到物理和功能读出。RFdiffusion说明了生成与实验表征如何分工，不说明任何计算候选都天然有预期功能。[N05](../references/nature-papers.md#n05)
+**结构预测**提出几何候选；**对接**搜索相对结合姿势；**分子动力学（MD）**在给定力场下模拟运动；**实验结构与功能测量**增加真实读出的约束。连续做三种依赖同一预测结构的计算，不自动等于三项独立验证。[AlphaFold 3](../references/nature-papers.md#n07)、[AutoDock Vina](../references/index.md#vina)、[GROMACS](../references/index.md#md)
 
-详见[结构、功能与代谢](structure-function.md)。
+**设计**反向提出可能满足约束的序列或结构，再用实验检验。RFdiffusion中的生成与实验表征展示这种分工。[Nature N05](../references/nature-papers.md#n05)、[结构与功能正文](structure-function.md)
 
-## 7. 代谢物多了，是否说明通路更活跃？
+## 8. 代谢物多，为什么不一定反应快？
 
-代谢物丰度描述池大小；同位素标记提供原子来源和路径约束；摄取、分泌与时间信息进一步限制通量；FBA则从化学计量守恒和边界条件计算可行或优化解。它们不是同一量的不同展示方式。[COBRApy](../references/index.md#cobra)、[COPASI](../references/index.md#copasi)
+浓度类似“池里存了多少”，通量类似“每单位时间流过多少”。池大小相同可以对应不同流速；池变大也可能由于流出减少。该类比只解释守恒关系，不表示细胞是简单水池。
 
-单细胞代谢组把代谢状态异质性带入细胞尺度，却仍不自动把一次丰度测量转换为每个反应的速率。[N16](../references/nature-papers.md#n16)
+代谢组测化学状态；同位素示踪增加原子来源和路径信息；时间和摄取/分泌数据帮助估计流量；**FBA（通量平衡分析）**则在网络、边界和目标假设下计算可行或优化结果。它们回答互补的问题。[COBRApy](../references/index.md#cobra)、[代谢正文](structure-function.md)
 
-详见[代谢组与通量](../atlas/domains/14-metabolomics.md)。
+## 9. 群落、历史与环境：同样的序列可以被问不同问题
 
-## 8. 微生物群落和进化历史怎样从序列中推断？
+分类问来自哪些生物，组装问片段怎样构成基因组，功能注释问编码什么，系统发育问有什么共同历史。宏转录组和宏蛋白组增加表达层信息；环境观测帮助区分共同条件与直接互作。[MetaPhlAn 4](../references/nature-papers.md#n06)、[IQ-TREE](../references/index.md#iqtree)
 
-物种分类、功能注释、基因组组装和系统发育分别回答“有哪些”“编码什么”“序列怎样连接”“有哪些共同历史”。宏转录/宏蛋白分析再增加活动层信息；生态模型还需要环境、空间和检测过程。[MetaPhlAn 4](../references/nature-papers.md#n06)、[IQ-TREE](../references/index.md#iqtree)、[vegan](../references/index.md#vegan)
+物种列表是组成描述；功能基因是能力线索；实际反应和相互作用需要额外读出。因此“检测到某微生物”和“它造成某种变化”之间还隔着许多可检验的问题。[群体与系统](populations-systems.md)
 
-**分析意义：**避免把物种列表当作机制，把功能基因当作已发生的反应，把一个可拟合的历史模型当作唯一历史。
+## 10. 神经结构、活动和行为怎样关联？
 
-详见[群体、生态与系统](populations-systems.md)。
+电子显微重建描述连接结构；电生理记录电活动；钙或电压成像提供活动相关读出；行为视频记录动作。跨模态配准使我们知道它们是否来自同一个细胞或对象。MICrONS的分析价值之一就在于建立这类对应。[Nature N11](../references/nature-papers.md#n11)
 
-## 9. 神经结构、活动和行为如何连接？
+**编码模型**从刺激等信息解释神经响应；**解码模型**从活动推测刺激或行为。可解码表示观测含有相关信息，不证明大脑内部使用了同一算法；连接存在也不等于已经量化突触的实际功能影响。[神经方法](../atlas/domains/18-neuroscience-behavior.md)
 
-EM重建连接，电生理和钙/电压成像提供活动，行为视频提供运动与行为特征，编码/解码模型分析这些变量的关系。跨模态配准建立对象对应；干预再检验特定回路的功能作用。[MICrONS](../references/nature-papers.md#n11)、[CaImAn](../references/index.md#caiman)、[DeepLabCut](../references/index.md#dlc)
+## AI不是一层统一的“生物学答案”
 
-“能解码某个行为”表示数据含有可预测信息，不自动说明脑使用了该解码算法；结构边也不是突触效力的直接数值。
+AI可以做分割、定量、分类、结构预测、序列评分或候选生成。应先判断它在以上哪一个任务位置，再理解训练目标和输出含义。CellSAM、Nicheformer、AlphaGenome和Evo 2的输入与目标并不相同。[Nature N12–N15](../references/nature-papers.md#n12)
 
-详见[神经科学](../atlas/domains/18-neuroscience-behavior.md)。
-
-## AI位于哪里？
-
-AI不是以上所有问题之上的一个统一解释层。它可以用于信号识别、表征、结构预测、轨道预测或候选生成。CellSAM、Nicheformer、AlphaGenome和Evo 2的输入、训练目标和输出并不相同，因此需要按所做的任务理解，而不是统称为“模型理解了生物学”。[N13](../references/nature-papers.md#n13)、[N12](../references/nature-papers.md#n12)、[N14](../references/nature-papers.md#n14)、[N15](../references/nature-papers.md#n15)
-
-这些关系共同构成知识库的主线：**先明确生物变量，再明确如何观察它，最后解释分析增加了什么、没有增加什么。**
+整合技术的核心不是数量，而是**每一项新观察或计算，是否帮助我们区分原先分不开的生物学解释**。
